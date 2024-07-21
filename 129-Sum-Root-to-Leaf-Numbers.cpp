@@ -11,24 +11,16 @@
  */
 class Solution {
 public:
-    void getPath(TreeNode *root, vector<string> &ans, string res){
-        if(!root){  return; }
-        if(root->left || root->right){  res += to_string(root->val); }
-        else if(!root->left && !root->right){
-            res += to_string(root->val);
-            ans.push_back(res);
-        }
-        getPath(root->left, ans, res);
-        getPath(root->right, ans, res);
+    int pathSum(TreeNode *root, int sum){
+        if(!root){    return 0;   }
+        sum = sum * 10 + root->val;
+        if(!root->left && !root->right){    return sum;    }
+        int lSum = pathSum(root->left, sum);
+        int rSum = pathSum(root->right, sum);
+        return lSum + rSum;
     }
     int sumNumbers(TreeNode* root) {
-        if(!root){    return 0;   }
-        vector<string> nums;
-        getPath(root, nums, \\);
-        int sum = 0;
-        for(auto it : nums){
-            sum += stoi(it);
-        }
+        int sum = pathSum(root, 0);
         return sum;
     }
 };
