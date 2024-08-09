@@ -25,12 +25,10 @@ public:
         while(!pq.empty()){
             auto front = pq.top();
             pq.pop();
-            int val = front.first;
             ListNode* node = front.second;
             if(node->next)  pq.push({node->next->val, node->next});
-
-            ListNode* newNode = new ListNode(val);
-            temp->next = newNode;
+            
+            temp->next = node;
             temp = temp->next;
         }
         
