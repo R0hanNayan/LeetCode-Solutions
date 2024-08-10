@@ -7,7 +7,7 @@ public:
     void bfs(vector<vector<int>> &graph, int i, int j, queue<pair<int, int>> &q){
         int n = graph.size();
         q.push({i, j});
-        graph[i][j] = 2;
+        graph[i][j] = -1;
 
         vector<int> x = {1, -1, 0, 0};
         vector<int> y = {0, 0, 1, -1};
