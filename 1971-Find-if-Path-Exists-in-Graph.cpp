@@ -5,18 +5,15 @@ public:
         vis[s] = true;
 
         while(!q.empty()){
-            int k = q.size();
-            while(k--){
-                int node = q.front();
-                q.pop();
-                if(node == d) return true;
-                for(auto it : adj[node]){
-                    if(!vis[it]){
-                        q.push(it);
-                        vis[it] = true;
-                    }
+            int node = q.front();
+            q.pop();
+            if(node == d) return true;
+            for(auto it : adj[node]){
+                if(!vis[it]){
+                    q.push(it);
+                    vis[it] = true;
                 }
-            } 
+            }
         }
         return false;
     }
