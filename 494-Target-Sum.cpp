@@ -20,9 +20,9 @@ public:
 
         if((sum - target) % 2 != 0 || (sum - target) < 0)   return 0;
         
-        target = sum - target;
-        vector<vector<int>>dp(n+1, vector<int>(target + 1, -1));
+        int s1 = (sum - target) / 2;
+        vector<vector<int>>dp(n+1, vector<int>(s1+1, -1));
         
-        return solve(nums, n, target / 2, dp);
+        return solve(nums, n, s1, dp);
     }
 };
