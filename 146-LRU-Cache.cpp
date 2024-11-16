@@ -1,30 +1,30 @@
 class LRUCache {
 public:
     list<int> dll;
-    int cap;
     unordered_map<int, pair<list<int>::iterator, int>> cache;
+    int cap;
     LRUCache(int capacity) {
         cap = capacity;
     }
-    
-    void updateCache(int key){
+
+    void update(int key){
         dll.erase(cache[key].first);
         dll.push_front(key);
         cache[key].first = dll.begin();
     }
-
+    
     int get(int key) {
-        if(!cache.count(key)){
+        if(cache.find(key) == cache.end()){
             return -1;
         }
-        updateCache(key);
+        update(key);
         return cache[key].second;
     }
     
     void put(int key, int value) {
         if(cache.count(key)){
             cache[key].second = value;
-            updateCache(key);
+            update(key);
         }else{
             dll.push_front(key);
             cache[key] = {dll.begin(), value};
